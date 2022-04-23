@@ -1,36 +1,27 @@
 # README TEMPLATE
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
-![License](https://img.shields.io/badge/Made%20with-Markdown-darkgreen.svg)
-[![Github Commits](https://img.shields.io/github/commit-activity/w/HobbaZ/README-template)](https://github.com/HobbaZ/README-template/commits)
-[![GitHub latest commit](https://img.shields.io/github/last-commit/HobbaZ/README-template)](https://github.com/HobbaZ/README-template/branches)
+![License](https://img.shields.io/badge/Made%20with-React-darkgreen.svg)
+[![Github Commits](https://img.shields.io/github/commit-activity/w/HobbaZ/React-app-MYSQL-example)](https://github.com/HobbaZ/React-app-MYSQL-example/commits)
+[![GitHub latest commit](https://img.shields.io/github/last-commit/HobbaZ/React-app-MYSQL-example)](https://github.com/HobbaZ/React-app-MYSQL-example/branches)
 [![GitHub followers](https://img.shields.io/github/followers/HobbaZ.svg)]()
-![GitHub repo size](https://img.shields.io/github/repo-size/HobbaZ/README-template)
-[![GitHub issues](https://img.shields.io/github/issues/HobbaZ/README-template)](https://img.shields.io/github/issues/HobbaZ/README-template)
-![GitHub forks](https://img.shields.io/github/forks/HobbaZ/README-template)
-![GitHub language count](https://img.shields.io/github/languages/count/HobbaZ/README-template)
-![GitHub search hit counter](https://img.shields.io/github/search/HobbaZ/README-template/hits)
-
-Go to [shields.io](https://img.shields.io) to see what other badges you can add to your projects (to use the ones above, just change to your username and repo)
+![GitHub repo size](https://img.shields.io/github/repo-size/HobbaZ/React-app-MYSQL-example)
+[![GitHub issues](https://img.shields.io/github/issues/HobbaZ/React-app-MYSQL-example)](https://img.shields.io/github/issues/HobbaZ/React-app-MYSQL-example)
+![GitHub forks](https://img.shields.io/github/forks/HobbaZ/React-app-MYSQL-example)
+![GitHub language count](https://img.shields.io/github/languages/count/HobbaZ/React-app-MYSQL-example)
 
 ## Description
 ### Project Aim ###
-Ever needed a professional README layout but didn't know where to start? Use this template to quickly develop a professional README. 
-
-
-**Change the sections with your own text.**
-
-
-You can add code blocks and other font stylings to your README via the markdown syntax, look at this [mastering markdown ](https://guides.github.com/features/mastering-markdown/) link for more information.
+To create a simple React app with MySQL database.
 
 ### What Problem Does It Solve ###
-Solves the programmer's most gruelling and hated task, documentation.
+Bringing existing database structures to React
 
 ### What I Learnt ###
-Put what skills you learnt or advanced upon here.
+How to use MySQL with React
 
 ## Deployment
-You can view the [website link](https://github.com/HobbaZ/README-template) here. 
+Still in development
 
 
 ## Table of Contents
@@ -56,35 +47,26 @@ THEN some action happens (e.g. THEN I am redirected to repo owner's Github page)
 Repeat WHEN and THEN until all major project needs have been defined
 
 ## Screenshots
-![Cool example image Photo by <a href="https://unsplash.com/@ffstop?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Fotis Fotopoulos</a> on <a href="https://unsplash.com/s/photos/programming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  ](./assets/images/fotis-fotopoulos-DuHKoV44prg-unsplash.jpg)
-  
-![Cool example photo by Photo by <a href="https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">AltumCode</a> on <a href="https://unsplash.com/s/photos/programming?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
-  ](./assets/images/altumcode-XMFZqrGyV-Q-unsplash.jpg)
 
 ## Installation
-You will need: 
-Github, VS Code, Gitbash
+1. Clone the repo to your computer by clicking the green code button and copying the SSH version.
 
-1. Click Use this Template
-2. Enter a name for your repo
-3. Git clone new repo to your computer by right clicking SSH link in your repo, then open gitbash and type:
+2. Open Gitbash in your desired folder and type ```git clone ``` then right click to paste the string and hit enter. The repo will then be cloned to your computer.
 
-    'git clone' 
-    
-    Then right click next to git clone text and your SSh link will be pasted in for you, hit enter and wait as it compiles
+3. Navigate to the repo folder and type ```code .``` into gitbash to open the repo in VS Code.
 
-4. Open the repo in your editor software and edit the README to your values
+4. Open a new Terminal in VS Code and type ```npm install``` to install the repo dependencies.
+
+5. Create a .env file like the image below in the server folder and input your database details.
+![example .env file](client/src/assets/images/envexample.PNG)
+
+6. Finally, type ```npm run develop``` into the terminal and it will start the dev server at localhost:3000.
 
 ## Features
-- Clickable table of contents
-- Easily modifiable for more sections, more images, etc
-- Badges
 
 ## Technology
-List tech stack you used to create your project here (e.g. Node.js, Inquirer npm package, Github API)
-- Github
-- 
+- MySQL
+- React
 - 
 
 ## Contributors
@@ -93,29 +75,17 @@ List tech stack you used to create your project here (e.g. Node.js, Inquirer npm
 You can also contribute by opening a pull request or submitting an issue
 
 ## Acknowledgements
-Put url's of website's that helped you in creating your project here.
-E.g.
-
-[Google Fonts Lalezar](https://fonts.google.com/specimen/Lalezar?category=Display#standard-styles)
-
-[Shields.io](https://shields.io/)
-
-[Coolers](https://coolors.co/)
+[MySQL documentation](https://dev.mysql.com/doc/)
+[React MySQL tutorial](https://dev.to/nasreenkhalid/simple-react-js-and-mysql-integration-crud-app-backend-5aom)
 
 ## Testing
-List any unit tests you've created for your project here
+No tests yet
 
 ## License
 
-This is the licence conditions you apply to your project (e.g. limitations on how it can be used, if they need to attribute you as the creator). 
-
-**Remember to change the copyright text to the current year and your name!**
-
-View licences available at [choosealicence website](https://choosealicense.com/licenses/)
-
 MIT
 
-**Copyright 2021 Zachary Hobba**
+**Copyright 2022 Zachary Hobba**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
