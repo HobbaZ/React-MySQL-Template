@@ -1,115 +1,82 @@
 import React, { useState } from 'react';
 
-import { ADD_USER } from '../utils/mutations'
+import { Container, Button, Form} from 'react-bootstrap';
 
-import Auth from '../utils/auth';
+const Signup = () => {
+    const [formInput, setFormInput] = useState('');
+    const [submittingForm, setSubmittingForm] = useState(false);
 
-import { Form, FormField, Label, FormGroup, FormButton, Container }  from 'react-bootstrap';
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        setSubmittingForm(true);
+    
+        if (!formInput) {
+          return false;
+        }
+        
+        //Send data to create user endpoint
+        try {
+          const response = await fetch(`api/users`, {method: 'POST'});
+    
+          if (!response.ok) {
+            console.log(response);
+            throw new Error('something went wrong!');
+          }
+    
+          setFormInput('');
+        } catch (err) {
+          console.error(err);
+        }
+      };
 
-const SignupForm = () => {
+      const handleChange = async (event) => {
+        const { name, value } = event.target;
+        setFormInput({ ...formInput, [name]: value });
+      };
 
-  // set initial form state
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
-  // set state for form validation
-  const [validated] = useState(false);
+    return (
+        <>
+        <Container>
+            <div>
+                <h1>Sign Up</h1>
+                <Form onSubmit={handleSubmit}>
 
-  const [addUser, { error, data } ] = useMutation(ADD_USER);
+                    <Form.Group className="mb-3">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control type="text" name ="firstName" value={formInput.firstName || ''} placeholder="First Name" onChange={handleChange}/>
+                    </Form.Group>
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setUserFormData({ ...userFormData, [name]: value });
-  };
+                    <Form.Group className="mb-3">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control type="text"name ="lastName" value={formInput.lastName || ''} placeholder="Last Name" onChange={handleChange}/>
+                    </Form.Group>
+                    
+                    <Form.Group className="mb-3">
+                        <Form.Label>Create a username</Form.Label>
+                        <Form.Control type="text" name ="username" value={formInput.username || ''} placeholder="username" onChange={handleChange}/>
+                    </Form.Group>
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(userFormData);
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control type="email" name ="email" value={formInput.email || ''} placeholder="Enter email" onChange={handleChange}/>
+                    </Form.Group>
 
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange}/>
+                    </Form.Group>
 
-    try {
-      const { data } = await addUser({
-        variables: { ...userFormData },
-      });
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                    </Form>
 
-      Auth.login(data.addUser.token);
-    } catch (e) {
-      console.error(e);
-    }
-    setUserFormData({
-      username: '',
-      email: '',
-      password: '',
-    });
-
-  };
-
-  return (
-    <>
-    <Container>
-    <h4>Sign Up</h4>
-      {data ? (
-              <p>
-                Success! Creating your account...
-              </p>
-            ) : (
-      <Form validated={validated} onSubmit={handleFormSubmit}>
-        {/* show alert if server response is bad */}
-
-        <FormGroup>
-            <Label>Username</Label>
-            <FormField
-            placeholder="Your username"
-            name="username"
-            type="text"
-            value={userFormData.username}
-            onChange={handleInputChange}>
-            </FormField>
-        </FormGroup>
-
-        <FormGroup>
-            <Label>Email</Label>
-            <FormField
-            placeholder="Your email"
-            name="email"
-            type="email"
-            value={userFormData.email}
-            onChange={handleInputChange}>
-            </FormField>
-        </FormGroup>
-
-        <FormGroup>
-            <Label>Password</Label>
-            <FormField
-            placeholder="Create a password"
-            name="password"
-            type="password"
-            value={userFormData.password}
-            onChange={handleInputChange}>
-            </FormField>
-        </FormGroup>
-
-        <div style={{"textAlign": "center"}}>
-        <FormButton
-          disabled={!(userFormData.username && userFormData.email && userFormData.password)}
-          type='submit'>
-          Sign Up
-        </FormButton>
-        </div>
-      </Form>
-      )}
-
-            {error && (
-              <div>
-                {error.message}
-              </div>
-            )}
-      </Container>
-    </>
-  );
+                    {submittingForm &&
+                    <div>Submitting the form...</div>}
+            </div>
+        </Container>
+        </>
+    );
 };
 
-export default SignupForm;
+export default Signup;

@@ -1,8 +1,11 @@
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql2');
 const routes = require('./routes');
-const db = require('./config/connection');
+const session = require('express-session');
+const sequelize = require('./config/connection');
+const cors = require("cors");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,9 +13,31 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cors({origin: 'http://localhost:3000/'}))
+
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '../client/build')));
+  }
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build/index.html'));
+  });
+
 //Turn on routing
 app.use(routes);
 
-app.listen(PORT, ()=>{
-    console.log(`Server is running on ${PORT}`)
-})
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log(`Now listening at port ${PORT}`));
+});

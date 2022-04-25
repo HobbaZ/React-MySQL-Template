@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { FooterStyle } from '../styles/GenericStyles';
+import Container from 'react-bootstrap/Container';
 
 //Change year automatically
 function year() {
@@ -10,14 +9,13 @@ function year() {
 
 const Footer = () => {
 return (
-  <FooterStyle>
-      <h4>Worthly {year()} </h4>
-      <div className='icons'>
-          <a href="https://www.linkedin.com/in/zachary-hobba-52aaa182/"><i className="fab fa-linkedin"></i></a>
-          <a href="mailto:zachobba@gmail.com"><i className="fas fa-envelope-square"></i></a>
-          <a href="https://github.com/HobbaZ"><i className="fab fa-github"></i></a>
-      </div>
-  </FooterStyle>
+  <>
+  <Container className='bg-primary text-white'>
+  <div>
+      <h4>Example {year()} </h4>
+  </div>
+  </Container>
+  </>
 );
 };
 

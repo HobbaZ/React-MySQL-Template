@@ -1,101 +1,152 @@
 const router = require('express').Router();
-const db = require('../../config/connection');
 const { User } = require('../../models');
 
-//Find all users
-router.get('/', async (req, res) => {
-  const sql = `SELECT firstname, lastname FROM user`;
-
-  db.query(sql, params, (err, res) => {
-    if (err) {
-      res.status(500).json({ error: err.message});
-      return;
-    }
-    res.json({ message: 'Found all users: ',
-    data: res
-  });
-  });
-});
-
-//Find one user
-router.get('/:id', async (req, res) => {
-  const sql = `SELECT firstname, lastname WHERE id= ? FROM user`;
-  const params = [req.params.id];
-
-  db.query(sql, params, (err, res) => {
-    if (err) {
-      res.status(500).json({ error: err.message});
-      return;
-    } else if (!res.affectedRows) {
-      res.json({message: 'User not found'});
-    } else {
-    res.json({ message: 'Found the user: ',
-    data: res
-  });
-  }
-  });
-});
-
-//Create a user
+// create a user
 router.post('/', async (req, res) => {
-  const sql = `INSERT INTO user (id, username, firstname, lastname, password, email) VALUES (?, ?, ?, ?, ?, ?) `;
+  try {
+    const userData = await User.create(req.body);
 
-  db.query(sql, (err, res) => {
-    if (err) {
-      res.status(500).json({ error: err.message});
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      res.status(200).json(userData);
+    });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// Find one user
+router.get('/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk({ where: { id: req.params.id } });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'No user by that id' });
+      return;
+    } else {
+      res
+        .status(200)
+        .json({ message: 'Found the user', userData })
+    }
+  }
+  catch (err) {
+  res.status(400).json(err);
+  }
+});
+
+// Get all users
+router.get('/', async (req, res) => {
+  try {
+    const userData = await User.findAll();
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Error trying to find all users' });
+      return;
+    } else {
+      res
+        .status(200)
+        .json({ message: 'Found all users', userData })
+    }
+  }
+  catch (err) {
+  res.status(400).json(err);
+  }
+});
+
+// Update one user
+router.put('/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk({ where: { id: req.params.id } });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'No user by that id' });
+      return;
+    } else {
+      res
+        .status(200)
+        .json({ message: 'Found the user', userData })
+    }
+  }
+  catch (err) {
+  res.status(400).json(err);
+  }
+});
+
+// Delete one user
+router.delete('/:id', async (req, res) => {
+  try {
+    const userData = await User.destroy({ where: { id: req.params.id } });
+
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'No user by that id' });
+      return;
+    } else {
+      res
+        .status(200)
+        .json({ message: 'Found the user', userData })
+    }
+  }
+  catch (err) {
+  res.status(400).json(err);
+  }
+});
+
+// post data for login
+router.post('/login', async (req, res) => {
+  try {
+    const userData = await User.findOne({ where: { email: req.body.email } });
+
+    // if no user data entered, display error message
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
     }
-    res.json({ message: 'Found all users: ',
-    data: res
-  });
-  });
-});
 
-// update a user by its `id` value
-router.put('/:id', async (req, res) => {
-  const sql = `UPDATE users SET (username, firstname, lastname, password, email) VALUES (?, ?, ?, ?, ?, ?) WHERE id= ? `;
+    //Check the entered password
+    const validPassword = await userData.checkPassword(req.body.password);
 
-  const params = [req.params.id, 
-                 req.body.username,
-                 req.body.firstname, 
-                 req.body.lastname,
-                 req.body.password, 
-                 req.body.email
-                ];
-
-  db.query(sql, params, (err, res) => {
-    if (err) {
-      res.status(500).json({ error: err.message});
+    // If invalid password, display error message
+    if (!validPassword) {
+      res
+        .status(400)
+        .json({ message: 'Incorrect email or password, please try again' });
       return;
-    } else if (!res.affectedRows) {
-      res.json({message: 'User not found'});
-    } else {
-      res.json({ message: 'Updated user details: ',
-      data: req.body,
-      changes: res.affectedRows
+    }
+
+    // if credentials are valid, log in
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+      
+      res.json({ user: userData, message: 'You are now logged in!' });
     });
+
+  } catch (err) {
+    res.status(400).json(err);
   }
-  });
 });
 
-//Delete user by id
-router.delete('/:id', async(req, res) => {
-  const sql = `DELETE FROM user WHERE id= ?`;
-  const params = [req.params.id];
-
-  db.query(sql, params, (err, res) => {
-    if (err) {
-      res.status(500).json({ error: err.message});
-      return;
-    } else if (!res.affectedRows) {
-      res.json({message: 'User not found'});
-    } else {
-    res.json({ message: 'deleted user',
-    changes: result.affectedRows,
-    id: req.params.id
-  });
+// logout
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
-  });
 });
 
 module.exports = router;

@@ -10,16 +10,15 @@ const AppNavbar = () => {
     <>
       <Navbar bg='dark' variant='dark' expand='lg'>
         <Container fluid>
+
           <Navbar.Brand as={Link} to='/'>
             Example App
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls='navbar' />
-          <Navbar.Collapse id='navbar'>
+
             <Nav className='ml-auto'>
 
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
-            <Nav.Link as={Link} to='/about'>About</Nav.Link>
-            <Nav.Link as={Link} to='/contact'>Contact</Nav.Link>
+            <Nav.Link as={Link} to='/signup'>Home</Nav.Link>
 
               {/* if user is logged in show profile and logout tabs*/}
               {Auth.loggedIn() ? (
@@ -28,13 +27,15 @@ const AppNavbar = () => {
                   <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                 </>
               ) : (
+                
                 <>
+              {/*Else show login and singup links*/}
                 <Nav.Link as={Link} to='/login'>Login</Nav.Link>
                 <Nav.Link as={Link} to='/signup'>Sign Up</Nav.Link>
             </>
               )}
             </Nav>
-          </Navbar.Collapse>
+
         </Container>
       </Navbar>
     </>
