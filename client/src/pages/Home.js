@@ -4,12 +4,10 @@ import { Container, Button} from 'react-bootstrap';
 
 function getUsers() {
 
-    const response = fetch(`/api/users`).then((data) => {
-      console.log(data);
-    })
+    const response = fetch(`/api/users`)
       if (!response.ok) {
-        console.log(response);
-        throw new Error('something went wrong!');
+        console.log("Found all users", response);
+        throw new Error('Error in finding all users!');
       }
     };
 

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 
 import { Container, Button, Form} from 'react-bootstrap';
+import Signup from './Signup';
 
-const login = () => {
-    window.location.replace("/login");
+const signup = () => {
+    window.location.replace("/signup");
 }
 
-const Signup = () => {
+const Login = () => {
     const [formInput, setFormInput] = useState('');
     const [submittingForm, setSubmittingForm] = useState(false);
 
@@ -18,9 +19,9 @@ const Signup = () => {
           return false;
         }
         
-        //Send data to create user endpoint
+        //Send data to login endpoint
         try {
-          const response = await fetch(`api/users`, {
+          const response = await fetch(`api/users/login`, {
             method: 'POST',
             body: JSON.stringify({ ...formInput}),
             headers: { 'Content-Type': 'application/json' },
@@ -44,26 +45,11 @@ const Signup = () => {
 
     return (
         <>
-        <Container className='fluid'>
+        <Container>
             <div>
-                <h1 className='text-center'>Sign Up</h1>
+                <h1 className='text-center'>Login</h1>
                 <Form onSubmit={handleSubmit} className='mx-auto'>
-
-                    <Form.Group className="mb-3" disabled={submittingForm}>
-                        <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" name ="firstname" value={formInput.firstname || ''} placeholder="First Name" onChange={handleChange}/>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" disabled={submittingForm}>
-                        <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text"name ="lastname" value={formInput.lastname || ''} placeholder="Last Name" onChange={handleChange}/>
-                    </Form.Group>
                     
-                    <Form.Group className="mb-3" disabled={submittingForm}>
-                        <Form.Label>Create a username</Form.Label>
-                        <Form.Control type="text" name ="username" value={formInput.username || ''} placeholder="username" onChange={handleChange}/>
-                    </Form.Group>
-
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name ="email" value={formInput.email || ''} placeholder="Enter email" onChange={handleChange}/>
@@ -78,26 +64,26 @@ const Signup = () => {
                         <Button variant="primary" 
                         type="submit" 
                         className='col-sm-8 col-md-4 col-lg-2 m-2'
-                        disabled={!(formInput.username)}>
-                            Sign Up
+                        disabled={!(formInput.firstname && formInput.lastname && formInput.username && formInput.email && formInput.password)}>
+                            Login
                         </Button>
                     </div>
-                </Form>
+                    </Form>
 
-                <div className='text-center'>
+                    <div className='text-center'>
                     <Button variant="primary"
                     className='col-sm-8 col-md-4 col-lg-2 m-2'
-                    onClick={login}>
-                        login instead
+                    onClick={signup}>
+                        Sign Up instead
                     </Button>
                 </div>
 
                     {submittingForm &&
-                    <div>Submitting the form...</div>}
+                    <div>Trying to log you in...</div>}
             </div>
         </Container>
         </>
     );
 };
 
-export default Signup;
+export default Login;

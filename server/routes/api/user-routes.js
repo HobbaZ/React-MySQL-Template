@@ -4,7 +4,12 @@ const { User } = require('../../models');
 // create a user
 router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
+    const userData = await User.create({
+      username: req.body.username, 
+      firstname: req.body.firstname, 
+      lastname: req.body.lastname, 
+      password: req.body.password, 
+      email: req.body.email});
 
     req.session.save(() => {
       req.session.user_id = userData.id;
