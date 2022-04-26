@@ -64,7 +64,7 @@ const Login = () => {
                         <Button variant="primary" 
                         type="submit" 
                         className='col-sm-8 col-md-4 col-lg-2 m-2'
-                        disabled={!(formInput.firstname && formInput.lastname && formInput.username && formInput.email && formInput.password)}>
+                        disabled={!(formInput.email && formInput.password)}>
                             Login
                         </Button>
                     </div>

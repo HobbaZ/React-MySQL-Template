@@ -18,7 +18,6 @@ const AppNavbar = () => {
             <Nav className='ml-auto'>
 
             <Nav.Link as={Link} to='/'>Home</Nav.Link>
-            <Nav.Link as={Link} to='/signup'>Home</Nav.Link>
 
               {/* if user is logged in show profile and logout tabs*/}
               {Auth.loggedIn() ? (

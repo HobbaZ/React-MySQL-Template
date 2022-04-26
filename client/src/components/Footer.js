@@ -10,7 +10,7 @@ function year() {
 const Footer = () => {
 return (
   <>
-  <Container className='bg-primary text-white'>
+  <Container className='bg-primary text-white text-center' fluid>
   <div>
       <h4>Example {year()} </h4>
   </div>
