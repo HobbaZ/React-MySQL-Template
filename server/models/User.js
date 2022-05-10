@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
 class User extends Model {
+    //Check entered password for matched unhashed password
   checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
   }
@@ -36,6 +37,7 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      match: [/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, 'A valid email address is required'],
       validate: {
         isEmail: true,
       },

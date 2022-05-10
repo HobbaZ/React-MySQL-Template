@@ -4,7 +4,6 @@ import { Navbar, Nav, Container} from 'react-bootstrap';
 import Auth from '../utils/auth';
 
 const AppNavbar = () => {
-  // set modal display state
 
   return (
     <>
@@ -28,7 +27,7 @@ const AppNavbar = () => {
               ) : (
                 
                 <>
-              {/*Else show login and singup links*/}
+              {/*Else show login and signup links*/}
                 <Nav.Link as={Link} to='/login'>Login</Nav.Link>
                 <Nav.Link as={Link} to='/signup'>Sign Up</Nav.Link>
             </>

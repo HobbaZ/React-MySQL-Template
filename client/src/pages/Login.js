@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 
 import { Container, Button, Form} from 'react-bootstrap';
-import Signup from './Signup';
+
+import Auth from '../utils/auth';
 
 const signup = () => {
     window.location.replace("/signup");
 }
 
 const Login = () => {
-    const [formInput, setFormInput] = useState('');
+    const [formInput, setFormInput] = useState({ email: '', password: '' });
     const [submittingForm, setSubmittingForm] = useState(false);
+
+    // state for messages
+    const [infoMessage, setInfoMessage] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -29,8 +33,14 @@ const Login = () => {
     
           if (!response.ok) {
             console.log(response);
-            throw new Error('something went wrong!');
+            setInfoMessage('something went wrong trying to log in!')
+            throw new Error('something went wrong trying to log in!');
           }
+
+          const { token, user } = await response.json();
+          setInfoMessage('Logging in!')
+          console.log('logging in', user);
+          Auth.login(token);
     
           setFormInput('');
         } catch (err) {
@@ -52,7 +62,7 @@ const Login = () => {
                     
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name ="email" value={formInput.email || ''} placeholder="Enter email" onChange={handleChange}/>
+                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
@@ -78,8 +88,9 @@ const Login = () => {
                     </Button>
                 </div>
 
-                    {submittingForm &&
-                    <div>Trying to log you in...</div>}
+                {infoMessage && (
+                  <div>{infoMessage}</div>
+                )}
             </div>
         </Container>
         </>

@@ -10,9 +10,9 @@ function year() {
 const Footer = () => {
 return (
   <>
-  <Container className='bg-primary text-white text-center' fluid>
+  <Container className='bg-dark text-white text-center' fluid>
   <div>
-      <h4>Example {year()} </h4>
+      <h4>Example MySQL App, {year()} </h4>
   </div>
   </Container>
   </>

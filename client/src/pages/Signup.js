@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 
 import { Container, Button, Form} from 'react-bootstrap';
 
+import Auth from '../utils/auth';
+
 const login = () => {
     window.location.replace("/login");
 }
 
 const Signup = () => {
-    const [formInput, setFormInput] = useState('');
+    const [formInput, setFormInput] = useState({ username: '', email: '', password: '' ,firstname: '', lastname: ''});
     const [submittingForm, setSubmittingForm] = useState(false);
 
     const handleSubmit = async (event) => {
@@ -25,11 +27,16 @@ const Signup = () => {
             body: JSON.stringify({ ...formInput}),
             headers: { 'Content-Type': 'application/json' },
           });
+          
     
           if (!response.ok) {
             console.log(response);
             throw new Error('something went wrong!');
           }
+
+          const { token, user } = await response.json();
+          console.log(user);
+          Auth.login(token);
     
           setFormInput('');
         } catch (err) {
@@ -51,22 +58,22 @@ const Signup = () => {
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" name ="firstname" value={formInput.firstname || ''} placeholder="First Name" onChange={handleChange}/>
+                        <Form.Control type="text" name ="firstname" value={formInput.firstname.trim() || ''} placeholder="First Name" onChange={handleChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text"name ="lastname" value={formInput.lastname || ''} placeholder="Last Name" onChange={handleChange}/>
+                        <Form.Control type="text"name ="lastname" value={formInput.lastname.trim() || ''} placeholder="Last Name" onChange={handleChange}/>
                     </Form.Group>
                     
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Create a username</Form.Label>
-                        <Form.Control type="text" name ="username" value={formInput.username || ''} placeholder="username" onChange={handleChange}/>
+                        <Form.Control type="text" name ="username" value={formInput.username.trim() || ''} placeholder="username" onChange={handleChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name ="email" value={formInput.email || ''} placeholder="Enter email" onChange={handleChange}/>
+                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>

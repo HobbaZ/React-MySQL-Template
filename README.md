@@ -1,4 +1,4 @@
-# README TEMPLATE
+# React-app-MYSQL-example
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 ![License](https://img.shields.io/badge/Made%20with-React-darkgreen.svg)
@@ -70,6 +70,7 @@ Repeat WHEN and THEN until all major project needs have been defined
 - Sequelize
 - Bcrypt
 - Express
+- Bootstrap
 
 ## Contributors
 [Zachary Hobba](https://github.com/HobbaZ)
