@@ -25,7 +25,7 @@ const Login = () => {
         
         //Send data to login endpoint
         try {
-          const response = await fetch(`api/users/login`, {
+          const response = await fetch(`/api/users/login`, {
             method: 'POST',
             body: JSON.stringify({ ...formInput}),
             headers: { 'Content-Type': 'application/json' },
@@ -33,7 +33,7 @@ const Login = () => {
     
           if (!response.ok) {
             console.log(response);
-            setInfoMessage('something went wrong trying to log in!')
+            setInfoMessage('Wrong email or password entered')
             throw new Error('something went wrong trying to log in!');
           }
 
@@ -70,6 +70,10 @@ const Login = () => {
                         <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange}/>
                     </Form.Group>
 
+                    {infoMessage && (
+                  <div className='text-center'>{infoMessage}</div>
+                )}
+
                     <div className='text-center'>
                         <Button variant="primary" 
                         type="submit" 
@@ -88,9 +92,7 @@ const Login = () => {
                     </Button>
                 </div>
 
-                {infoMessage && (
-                  <div>{infoMessage}</div>
-                )}
+                
             </div>
         </Container>
         </>

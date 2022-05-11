@@ -22,7 +22,7 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:id').delete(authMiddleware, deleteUser);
 
-router.route('/me').post(authMiddleware, updateUser);
+router.route('/:id').put(authMiddleware, updateUser);
 
 router.route('/').get(allUsers);
 

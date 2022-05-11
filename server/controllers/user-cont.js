@@ -29,8 +29,14 @@ module.exports = {
     res.json(singleUser);
   },
   // create a user, sign a token
-  async createUser({ body }, res) {
-    const user = await User.create(body);
+  async createUser( req, res) {
+    const user = await User.create({
+      username: req.body.username,
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      email: req.body.email,
+      password: req.body.password,
+    });
 
     if (!user) {
       return res.status(400).json({ message: 'Couldn\'t create user!' });
@@ -66,8 +72,14 @@ module.exports = {
   },
 
   // Update a user
-  async updateUser({ body }, res) {
-    const user = await User.update(body, { where: { id: req.params.id } });
+  async updateUser( req, res) {
+    const user = await User.update(
+      {
+        username: req.body.username,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        email: req.body.email,
+      }, { where: { id: req.params.id } });
 
     if (!user) {
       return res.status(400).json({ message: 'Couldn\'t update user!' });

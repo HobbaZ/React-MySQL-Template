@@ -38,13 +38,7 @@ Still in development
 - [Questions](#questions)
 
 ## User Story
-GIVEN a basic application description (e.g. GIVEN a command line application that accepts user input)
-
-WHEN I do something (e.g. WHEN I click a button)
-
-THEN some action happens (e.g. THEN I am redirected to repo owner's Github page)
-
-Repeat WHEN and THEN until all major project needs have been defined
+Create a template for basic setup of a React SPA with MySQL backend.
 
 ## Screenshots
 
@@ -71,6 +65,7 @@ Repeat WHEN and THEN until all major project needs have been defined
 - Bcrypt
 - Express
 - Bootstrap
+- JWT
 
 ## Contributors
 [Zachary Hobba](https://github.com/HobbaZ)
