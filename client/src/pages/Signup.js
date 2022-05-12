@@ -58,27 +58,27 @@ const Signup = () => {
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>First Name</Form.Label>
-                        <Form.Control type="text" name ="firstname" value={formInput.firstname.trim() || ''} placeholder="First Name" onChange={handleChange}/>
+                        <Form.Control type="text" name ="firstname" value={formInput.firstname.trim() || ''} placeholder="First Name" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Last Name</Form.Label>
-                        <Form.Control type="text"name ="lastname" value={formInput.lastname.trim() || ''} placeholder="Last Name" onChange={handleChange}/>
+                        <Form.Control type="text"name ="lastname" value={formInput.lastname.trim() || ''} placeholder="Last Name" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
                     
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Create a username</Form.Label>
-                        <Form.Control type="text" name ="username" value={formInput.username.trim() || ''} placeholder="username" onChange={handleChange}/>
+                        <Form.Control type="text" name ="username" value={formInput.username.trim() || ''} placeholder="username" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange}/>
+                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange}/>
+                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required/>
                     </Form.Group>
 
                     <div className='text-center'>

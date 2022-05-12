@@ -20,17 +20,32 @@ User.init(
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
+      validate: {
+        len: {
+          args: [2],
+          msg: "Firstname must be at least 2 characters"
+        },
+    },
     },
     lastname: {
        type: DataTypes.STRING,
        allowNull: false,
+       validate: {
+        len: {
+          args: [2],
+          msg: "Lastname must be at least 2 characters"
+        },
+    },
     },
     username: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
       validate: {
-          len: [2],
+          len: {
+            args: [2],
+            msg: "Username must be at least 2 characters"
+          },
       },
     },
     email: {
@@ -46,7 +61,11 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [8],
+        len: {
+          args: [8],
+          msg: "Password must have more than 8 characters"
+        } 
+        
       },
     },
   },

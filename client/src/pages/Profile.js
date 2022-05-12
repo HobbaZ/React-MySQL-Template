@@ -163,11 +163,14 @@ function Greeting(props) {
                   <div className='text-center'>{infoMessage}</div>
                 )}
 
+            {/*Click to show or hide edit form*/ }
+            <div className='text-center'>
               <Button variant="primary"
-                    className='col-sm-8 col-md-4 col-lg-2 m-2 text-center'
+                    className='col-sm-8 col-md-4 col-lg-2 m-2'
                     onClick={() => setShowEditForm(!showEditForm)}>
-                        Edit Account
+                        Edit Details
               </Button>
+            </div>
  
               {showEditForm && (
                 <>
@@ -178,22 +181,22 @@ function Greeting(props) {
 
                 <Form.Group className="mb-3" disabled={submittingForm}>
                     <Form.Label>Update First Name</Form.Label>
-                    <Form.Control type="text" name ="firstname" value={formInput.firstname || userData.firstname} placeholder={userData.firstname} onChange={handleChange}/>
+                    <Form.Control type="text" name ="firstname" value={formInput.firstname || userData.firstname} placeholder={userData.firstname} onChange={handleChange} minLength={2}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" disabled={submittingForm}>
                     <Form.Label>Update Last Name</Form.Label>
-                    <Form.Control type="text"name ="lastname" value={formInput.lastname || userData.lastname} placeholder={userData.lastname} onChange={handleChange}/>
+                    <Form.Control type="text"name ="lastname" value={formInput.lastname || userData.lastname} placeholder={userData.lastname} onChange={handleChange} minLength={2}/>
                 </Form.Group>
                 
                 <Form.Group className="mb-3" disabled={submittingForm}>
                     <Form.Label>Update Username</Form.Label>
-                    <Form.Control type="text" name ="username" value={formInput.username || userData.username} placeholder={userData.username} onChange={handleChange}/>
+                    <Form.Control type="text" name ="username" value={formInput.username || userData.username} placeholder={userData.username} onChange={handleChange} minLength={2}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" disabled={submittingForm}>
                     <Form.Label>Update Email address</Form.Label>
-                    <Form.Control type="email" name ="email" value={formInput.email || userData.email} placeholder={userData.email} onChange={handleChange}/>
+                    <Form.Control type="email" name ="email" value={formInput.email || userData.email} placeholder={userData.email} onChange={handleChange} minLength={2}/>
                 </Form.Group>
 
                 {infoMessage && (
@@ -214,11 +217,13 @@ function Greeting(props) {
                 </>
               )};
 
+            <div className='text-center'>
               <Button variant="danger"
-                    className='col-sm-8 col-md-4 col-lg-2 m-2 text-center'
+                    className='col-sm-8 col-md-4 col-lg-2 m-2'
                     onClick={deleteAccount}>
                         Delete Account
-              </Button>
+            </Button>
+              </div>
             </>
         )}
         </>

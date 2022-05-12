@@ -62,12 +62,12 @@ const Login = () => {
                     
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange}/>
+                        <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required/>
                     </Form.Group>
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange}/>
+                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required/>
                     </Form.Group>
 
                     {infoMessage && (
