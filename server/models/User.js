@@ -20,6 +20,7 @@ User.init(
     firstname: {
       type: DataTypes.STRING,
       allowNull: false,
+      match: [/^[a-zA-Z]*$/],
       validate: {
         len: {
           args: [2],
@@ -30,6 +31,7 @@ User.init(
     lastname: {
        type: DataTypes.STRING,
        allowNull: false,
+       match: [/^[a-zA-Z]*$/],
        validate: {
         len: {
           args: [2],
@@ -40,7 +42,11 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'That username has been taken',
+      },
+      match: [/^[a-zA-Z0-9#$&@?/^_{}|()~\\/]*$/, 'illegal characters detected, *, ! and . are not allowed'],
       validate: {
           len: {
             args: [2],
@@ -51,7 +57,10 @@ User.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      unique: {
+        args: true,
+        msg: 'Email address already in use',
+      },
       match: [/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/, 'A valid email address is required'],
       validate: {
         isEmail: true,
@@ -60,6 +69,7 @@ User.init(
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+      match: [/^[a-zA-Z0-9#$&@?/^_{}|()~\\/]*$/, 'illegal characters detected, *, ! and . are not allowed'],
       validate: {
         len: {
           args: [8],

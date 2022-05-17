@@ -8,6 +8,8 @@ const login = () => {
     window.location.replace("/login");
 }
 
+let emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 const Signup = () => {
     const [formInput, setFormInput] = useState({ username: '', email: '', password: '' ,firstname: '', lastname: ''});
     const [submittingForm, setSubmittingForm] = useState(false);
@@ -61,25 +63,42 @@ const Signup = () => {
                         <Form.Control type="text" name ="firstname" value={formInput.firstname.trim() || ''} placeholder="First Name" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
 
+                    {formInput.firstname.length < 2 ? 
+                        <div className="text-center text-danger">{"First name must be at least 2 characters"}</div> : ''};
+
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Last Name</Form.Label>
                         <Form.Control type="text"name ="lastname" value={formInput.lastname.trim() || ''} placeholder="Last Name" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
+
+                    {formInput.lastname.length < 2 ? 
+                        <div className="text-center text-danger">{"Last name must be at least 2 characters"}</div> : ''};
                     
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Create a username</Form.Label>
-                        <Form.Control type="text" name ="username" value={formInput.username.trim() || ''} placeholder="username" onChange={handleChange} required minLength={2}/>
+                        <Form.Control type="text" name ="username" value={formInput.username.trim() || ''} placeholder="username" onChange={handleChange} required minLength={2} formNoValidate={true}/>
                     </Form.Group>
+                    
+                    {formInput.username.length < 2 ? 
+                        <div className="text-center text-danger">{"Username must be at least 2 characters"}</div> : ''};
+
+
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required minLength={2}/>
                     </Form.Group>
 
+                    {!emailRegex.test(formInput.email) ? 
+                        <div className="text-center text-danger">{"Invalid email entered"}</div> : ''};
+
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required/>
+                        <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required minLength={8}/>
                     </Form.Group>
+
+                    {formInput.password.length < 8 ? 
+                        <div className="text-center text-danger">{"Password must be minimum 8 characters"}</div> : ''};
 
                     <div className='text-center'>
                         <Button variant="primary" 

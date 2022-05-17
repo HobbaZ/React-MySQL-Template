@@ -8,6 +8,8 @@ const signup = () => {
     window.location.replace("/signup");
 }
 
+let emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 const Login = () => {
     const [formInput, setFormInput] = useState({ email: '', password: '' });
     const [submittingForm, setSubmittingForm] = useState(false);
@@ -65,10 +67,16 @@ const Login = () => {
                         <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required/>
                     </Form.Group>
 
+                    {!emailRegex.test(formInput.email) ? 
+                        <div className="text-center text-danger">{"Invalid email entered"}</div> : ''};
+
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required/>
                     </Form.Group>
+
+                    {formInput.password.length < 8 ? 
+                        <div className="text-center text-danger">{"Password must be minimum 8 characters"}</div> : ''};
 
                     {infoMessage && (
                   <div className='text-center'>{infoMessage}</div>

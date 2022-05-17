@@ -126,7 +126,7 @@ function Greeting(props) {
         });
   
         if (!response.ok) {
-          console.log(response);
+          
           throw new Error('something went wrong updating your details!');
         }
 
