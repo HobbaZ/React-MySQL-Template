@@ -6,13 +6,46 @@ import Auth from '../utils/auth';
 
 const login = () => {
     window.location.replace("/login");
-}
+};
 
 let emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const Signup = () => {
     const [formInput, setFormInput] = useState({ username: '', email: '', password: '' ,firstname: '', lastname: ''});
     const [submittingForm, setSubmittingForm] = useState(false);
+
+const checkUsername = async () => {
+    try {
+        const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+        if (!token) {
+          console.log("Need to be logged in to do this")
+          window.location.replace("/login");
+          return false;
+        }
+
+        const response = await fetch('/api/users/me', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`},
+          });
+
+        if (!response.ok) {
+          throw new Error('something went wrong getting user data!');
+          
+        }
+
+        const user = await response.json();
+        if (formInput.username === user.username) {
+            return (
+                <>
+            {<div className="text-center text-danger">{"Username already exists"}</div>};
+            </>
+            )}
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -82,7 +115,7 @@ const Signup = () => {
                     {formInput.username.length < 2 ? 
                         <div className="text-center text-danger">{"Username must be at least 2 characters"}</div> : ''};
 
-
+                    
 
                     <Form.Group className="mb-3" disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>

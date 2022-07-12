@@ -1,6 +1,5 @@
 import image from '../images/firmbee-com-SpVHcbuKi6E-unsplash.jpg';
 import Container from 'react-bootstrap/Container';
-import '../App.css'
 
 const HeroImage = () => {
     return (

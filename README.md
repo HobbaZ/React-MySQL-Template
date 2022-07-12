@@ -76,6 +76,12 @@ You can also contribute by opening a pull request or submitting an issue
 [MySQL documentation](https://dev.mysql.com/doc/)
 [React MySQL tutorial](https://dev.to/nasreenkhalid/simple-react-js-and-mysql-integration-crud-app-backend-5aom)
 
+[https://getbootstrap.com/docs/5.0/components/navbar/](https://getbootstrap.com/docs/5.0/components/navbar/)
+
+[https://fontawesome.com/](https://fontawesome.com/)
+
+Important: Code to kill port processes ```npx kill-port 3000```, type into your VS Code terminal
+
 ## Testing
 No tests yet
 

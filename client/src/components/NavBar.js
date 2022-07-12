@@ -7,35 +7,40 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
-        <Container fluid>
 
-          <Navbar.Brand as={Link} to='/'>
-            Example App
-          </Navbar.Brand>
+<nav className="navbar navbar-expand-lg navbar-light">
+  <Container fluid>
+  <Navbar.Brand as={Link} className="text-white" to='/'>Logo</Navbar.Brand>
 
-            <Nav className='ml-auto'>
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    
+    <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <Nav className="navbar-nav ml-auto mb-2 mb-lg-0">
+      <Nav.Link as={Link} className="text-white" to='/'>Home</Nav.Link>
+      <Nav.Link as={Link} className="text-white" to='/about'>About</Nav.Link>
 
-            <Nav.Link as={Link} to='/'>Home</Nav.Link>
+      {/* if user is logged in show profile and logout tabs*/}
+      {Auth.loggedIn() ? (
+              <>
+                <Nav.Link as={Link} className="text-white" to='/profile'>Profile</Nav.Link>
+                <Nav.Link onClick={Auth.logout} className="text-white">Logout</Nav.Link>
+              </>
+            ) : (
+              
+              <>
+            {/*Else show login and signup links*/}
+              <Nav.Link as={Link} className="text-white" to='/login'>Login</Nav.Link>
+              <Nav.Link as={Link} className="text-white" to='/signup'>Sign Up</Nav.Link>
+          </>
+            )}
+      </Nav>
 
-              {/* if user is logged in show profile and logout tabs*/}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to='/profile'>Profile</Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                
-                <>
-              {/*Else show login and signup links*/}
-                <Nav.Link as={Link} to='/login'>Login</Nav.Link>
-                <Nav.Link as={Link} to='/signup'>Sign Up</Nav.Link>
-            </>
-              )}
-            </Nav>
+    </div>
+  </Container>
+</nav>
 
-        </Container>
-      </Navbar>
     </>
   );
 };
