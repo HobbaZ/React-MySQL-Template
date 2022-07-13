@@ -141,15 +141,17 @@ const checkUsername = async () => {
                             Sign Up
                         </Button>
                     </div>
-                </Form>
 
-                <div className='text-center'>
+                    <div className='text-center'>
                     <Button variant="primary"
                     className='col-sm-8 col-md-4 col-lg-2 m-2'
                     onClick={login}>
                         login instead
                     </Button>
                 </div>
+                </Form>
+
+                
 
                     {submittingForm &&
                     <div>Submitting the form...</div>}

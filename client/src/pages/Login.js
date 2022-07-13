@@ -90,7 +90,6 @@ const Login = () => {
                             Login
                         </Button>
                     </div>
-                    </Form>
 
                     <div className='text-center'>
                     <Button variant="primary"
@@ -98,7 +97,10 @@ const Login = () => {
                     onClick={signup}>
                         Sign Up instead
                     </Button>
-                </div>
+                    </div>
+                    </Form>
+
+                    
 
                 
             </div>

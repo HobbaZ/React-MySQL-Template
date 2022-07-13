@@ -13,10 +13,9 @@ import AppNavbar from './components/NavBar.js';
 
 function App() {
   return (
+    <>
     <Router>
-        <div>
-          <AppNavbar/>
-          <div>
+        <div><AppNavbar/></div>
 
           <Routes>
           <Route exact path='/' element={<Home/>} />
@@ -25,11 +24,15 @@ function App() {
           <Route exact path='/about' element={<About/>} />
           <Route exact path='/profile' element={<Profile/>} />
           <Route render={() => <h1>404! This page doesn't exist</h1>} />
-        </Routes>
-        </div>
-          <Footer />
-        </div>
+        </Routes> 
       </Router>
+      
+      <div className='heroImage'>
+        <div className='overlay'></div>
+      </div>
+
+      <Footer />
+      </>
   );
 }
 

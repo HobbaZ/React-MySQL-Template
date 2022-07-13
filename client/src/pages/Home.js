@@ -5,10 +5,10 @@ import { Container } from 'react-bootstrap';
 const Home = () => {
 
     return (
-        <>
-        <Container>
-        </Container>
-        </>
+      <>
+        
+        <h1 className='homeText'>This is the home page</h1>
+      </>
     );
 };
 

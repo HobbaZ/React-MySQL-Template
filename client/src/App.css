@@ -3,22 +3,56 @@
 }
 
 html, body {
-  height: 100%;
-  background: linear-gradient(#e66465, #9198e5);
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
-  padding-bottom: 20px;
+  padding-bottom: 60px;
+}
+
+.icon {
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.heroImage {
+  background-image: url('../src/images/graham-holtshausen-63JKK67yGUE-unsplash.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.navbar {
+  border-bottom: 2px white solid;
 }
 
 form {
   background-color: white;
-  border-radius: 20px;
-  height: fit-content;
+  height: min-content;
   padding: 10px;
 }
 
-.fas, .fab {
+.active {
+  color: yellow;
+}
+
+.fas, .fab, .fa {
   font-size: 40px;
   padding: 5px;
 }
