@@ -60,9 +60,9 @@ const Login = () => {
         <Container>
             <div>
                 <h1 className='text-center'>Login</h1>
-                <Form onSubmit={handleSubmit} className='mx-auto'>
+                <Form onSubmit={handleSubmit} className='mx-auto col-sm-12 col-md-9 col-lg-6'>
                     
-                    <Form.Group className="mb-3" disabled={submittingForm}>
+                    <Form.Group disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required/>
                     </Form.Group>
@@ -70,7 +70,8 @@ const Login = () => {
                     {!emailRegex.test(formInput.email) ? 
                         <div className="text-center text-danger">{"Invalid email entered"}</div> : ''};
 
-                    <Form.Group className="mb-3" disabled={submittingForm}>
+                    
+                    <Form.Group disabled={submittingForm}>
                         <Form.Label>Password</Form.Label>
                         <Form.Control type="password" name="password" value={formInput.password || ''} placeholder="Password" onChange={handleChange} required/>
                     </Form.Group>
@@ -83,26 +84,21 @@ const Login = () => {
                 )}
 
                     <div className='text-center'>
-                        <Button variant="primary" 
-                        type="submit" 
-                        className='col-sm-8 col-md-4 col-lg-2 m-2'
+                        <Button type="submit" 
+                        className='btn btn-dark col-sm-12 col-md-8 col-lg-4 m-2'
                         disabled={!(formInput.email && formInput.password)}>
                             Login
                         </Button>
                     </div>
 
                     <div className='text-center'>
-                    <Button variant="primary"
-                    className='col-sm-8 col-md-4 col-lg-2 m-2'
+                    <Button className='btn btn-dark col-sm-12 col-md-8 col-lg-4 m-2'
                     onClick={signup}>
                         Sign Up instead
                     </Button>
                     </div>
                     </Form>
 
-                    
-
-                
             </div>
         </Container>
         </>
