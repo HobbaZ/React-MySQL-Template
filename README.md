@@ -1,14 +1,14 @@
-# React-app-MYSQL-example
+# React MYSQL Template
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
 ![License](https://img.shields.io/badge/Made%20with-React-darkgreen.svg)
-[![Github Commits](https://img.shields.io/github/commit-activity/w/HobbaZ/React-app-MYSQL-example)](https://github.com/HobbaZ/React-app-MYSQL-example/commits)
-[![GitHub latest commit](https://img.shields.io/github/last-commit/HobbaZ/React-app-MYSQL-example)](https://github.com/HobbaZ/React-app-MYSQL-example/branches)
+[![Github Commits](https://img.shields.io/github/commit-activity/w/HobbaZ/React-MySQL-Template)](https://github.com/HobbaZ/React-MySQL-Template/commits)
+[![GitHub latest commit](https://img.shields.io/github/last-commit/HobbaZ/React-MySQL-Template)](https://github.com/HobbaZ/React-MySQL-Template/branches)
 [![GitHub followers](https://img.shields.io/github/followers/HobbaZ.svg)]()
-![GitHub repo size](https://img.shields.io/github/repo-size/HobbaZ/React-app-MYSQL-example)
-[![GitHub issues](https://img.shields.io/github/issues/HobbaZ/React-app-MYSQL-example)](https://img.shields.io/github/issues/HobbaZ/React-app-MYSQL-example)
-![GitHub forks](https://img.shields.io/github/forks/HobbaZ/React-app-MYSQL-example)
-![GitHub language count](https://img.shields.io/github/languages/count/HobbaZ/React-app-MYSQL-example)
+![GitHub repo size](https://img.shields.io/github/repo-size/HobbaZ/React-MySQL-Template)
+[![GitHub issues](https://img.shields.io/github/issues/HobbaZ/React-MySQL-Template)](https://img.shields.io/github/issues/HobbaZ/React-MySQL-Template)
+![GitHub forks](https://img.shields.io/github/forks/HobbaZ/React-MySQL-Template)
+![GitHub language count](https://img.shields.io/github/languages/count/HobbaZ/React-MySQL-Template)
 
 ## Description
 ### Project Aim ###
@@ -116,5 +116,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 ## Questions
 
 Find me on Github at [HobbaZ](https://github.com/HobbaZ)
+
 If this has helped you with your web development, consider buying me a Coffee (only costs $3) at [zachobba](buymeacoffee.com/zachobbaS)
+
 Email me at [zachobba@gmail.com](zachobba@gmail.com)
