@@ -6,8 +6,10 @@ const Home = () => {
 
     return (
       <>
-        
-        <h1 className='homeText'>This is the home page</h1>
+        <Container>
+        <h1 className='text-center'>Home</h1>
+        <p>A bare bones template with navigation, user authentication, basic styling and a MySQL database connection aleady set up, just add your own content.</p>
+        </Container>
       </>
     );
 };

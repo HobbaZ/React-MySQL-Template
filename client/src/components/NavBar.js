@@ -1,71 +1,76 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Button} from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
+import { Navbar, Nav, Container} from 'react-bootstrap';
 import Auth from '../utils/auth';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRightToBracket, faUser, faArrowRightFromBracket, faBars, faCircleHalfStroke } from '@fortawesome/free-solid-svg-icons'
-
-let isDark = false;
-
-const enableDarkTheme = () => {
-
-}
-
-const disableLightTheme = () => {
-
-}
-
-
-
-if (isDark) {
-  enableDarkTheme();
-} else {
-  disableLightTheme();
-}
+import { faArrowRightToBracket, faUser, faArrowRightFromBracket, faBars} from '@fortawesome/free-solid-svg-icons'
 
 const AppNavbar = () => {
 
   return (
     <>
 
-<nav className="navbar navbar-expand-lg navbar-light">
+<Nav className="navbar navbar-expand-lg navbar-light">
   <Container fluid>
-  <Navbar.Brand as={Link} className="text-white" to='/'>Logo</Navbar.Brand>
+  <Navbar.Brand as={Link} className="text-white ml-3" to='/'>Logo</Navbar.Brand>
 
-  
-
-    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
       <span id = "hamburgerIcon"><FontAwesomeIcon icon={faBars} /></span>
     </button>
 
-    
-    
-    <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <div className="collapse navbar-collapse" id="navbarToggler">
     
       <Nav className="navbar-nav ml-auto mb-2 mb-lg-0">
-      <Nav.Link as={Link} className=" " to='/'>Home</Nav.Link>
-      <Nav.Link as={Link} className="text-white" to='/about'>About</Nav.Link>
+      <NavLink as={Link} className="ml-3 text-center navLink"
+       style={({ isActive }) => ({
+        color: isActive ? 'yellow' : 'white',
+      })} 
+      to='/'>Home</NavLink>
+
+      <NavLink as={Link} className="ml-3 text-center navLink"
+      style={({ isActive }) => ({
+        color: isActive ? 'yellow' : 'white',
+      })}
+      to='/about'>About</NavLink>
 
       {/* if user is logged in show profile and logout tabs*/}
       {Auth.loggedIn() ? (
               <>
-                <Nav.Link as={Link} className="text-white" to='/profile'><FontAwesomeIcon icon={faUser} /> Profile</Nav.Link>
-                <Nav.Link onClick={Auth.logout} className="text-white"><FontAwesomeIcon icon={faArrowRightFromBracket} />Logout</Nav.Link>
+                <NavLink as={Link} className="ml-3 text-center navLink"
+                style={({ isActive }) => ({
+                  color: isActive ? 'yellow' : 'white',
+                })}
+                to='/profile'><FontAwesomeIcon icon={faUser} /> Profile</NavLink>
+
+                <NavLink onClick={Auth.logout} className="ml-3 text-center navLink"
+                style={({ isActive }) => ({
+                  color: isActive ? 'yellow' : 'white',
+                })}
+                ><FontAwesomeIcon icon={faArrowRightFromBracket} />Logout</NavLink>
               </>
             ) : (
               
               <>
             {/*Else show login and signup links*/}
-              <Nav.Link as={Link} className="text-white" to='/login'><FontAwesomeIcon icon={faArrowRightToBracket} /> Login</Nav.Link>
-              <Nav.Link as={Link} className="text-white" to='/signup'><FontAwesomeIcon icon={faUser} /> Sign Up</Nav.Link>
+              <NavLink as={Link} className="ml-3 text-center navLink"
+              style={({ isActive }) => ({
+                color: isActive ? 'yellow' : 'white',
+              })}
+              to='/login'><FontAwesomeIcon icon={faArrowRightToBracket} /> Login</NavLink>
+
+              <NavLink as={Link} className="ml-3 text-center navLink"
+              style={({ isActive }) => ({
+                color: isActive ? 'yellow' : 'white',
+              })}
+              to='/signup'><FontAwesomeIcon icon={faUser} /> Sign Up</NavLink>
           </>
             )}
       </Nav>
 
     </div>
   </Container>
-</nav>
+</Nav>
 
     </>
   );
