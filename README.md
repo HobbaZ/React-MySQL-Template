@@ -60,7 +60,9 @@ Create a template for basic setup of a React SPA with MySQL backend.
 
 ![example .env file](./assets/images/example-env.PNG)
 
-6. Finally, type ```npm run develop``` into the terminal and it will start the dev server at localhost:3000.
+6. Install concurrently as dev dependency ```npm i concurrently -D``` at root folder
+
+7. Finally, type ```npm run develop``` into the terminal and it will start the dev server at localhost:3000.
 
 ## Features
 - Can create an account, delete your account and update your details.
