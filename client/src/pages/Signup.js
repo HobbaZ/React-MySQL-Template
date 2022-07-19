@@ -115,8 +115,6 @@ const checkUsername = async () => {
                     {formInput.username.length < 2 ? 
                         <div className="text-center text-danger">{"Username must be at least 2 characters"}</div> : ''};
 
-                    
-
                     <Form.Group disabled={submittingForm}>
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" name ="email" value={formInput.email.trim() || ''} placeholder="Enter email" onChange={handleChange} required minLength={2}/>
@@ -136,7 +134,7 @@ const checkUsername = async () => {
                     <div className='text-center'>
                         <Button type="submit" 
                         className=' btn btn-dark col-sm-12 col-md-8 col-lg-4 m-2'
-                        disabled={!(formInput.username)}>
+                        disabled={!(formInput.username && formInput.firstname && formInput.lastname && formInput.email)}>
                             Sign Up
                         </Button>
                     </div>
@@ -148,8 +146,6 @@ const checkUsername = async () => {
                     </Button>
                 </div>
                 </Form>
-
-                
 
                     {submittingForm &&
                     <div>Submitting the form...</div>}
